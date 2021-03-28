@@ -1,0 +1,15 @@
+{
+  "name": "react-ts-build-from-scratch",
+  "version": "1.0.0",
+  "description": "build from scratch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Sadhu",
+    "url": "https://github.com/YxrSadhu",
+    "email": "xxx@xxx.com"
+  },
+  "license": "ISC"
+}
