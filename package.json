@@ -4,6 +4,7 @@
   "description": "build from scratch",
   "main": "index.js",
   "scripts": {
+    "eslint": "eslint src --ext .ts,.tsx",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
@@ -11,5 +12,27 @@
     "url": "https://github.com/YxrSadhu",
     "email": "xxx@xxx.com"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.23.0",
+    "eslint-config-alloy": "^3.10.0",
+    "eslint-plugin-react": "^7.23.1",
+    "prettier": "^2.2.1",
+    "stylelint": "^13.12.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.19.0",
+    "typescript": "^4.2.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
