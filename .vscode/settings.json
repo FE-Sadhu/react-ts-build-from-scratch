@@ -26,15 +26,41 @@
   },
   "files.eol": "\n",
   "editor.tabSize": 2,
+  "prettier.requireConfig": true,
+  "cSpell.words": [
+    "stylelint" // add words to workspace
+  ],
   // 保存文件时自动用 prettier 格式化
   "editor.formatOnSave": true,
   // 配置 VScode 使用 prettier 的 formatter
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  // 或像这样单独配置
-  //   "[javascript]": {
-  //     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  //   }
-  "cSpell.words": [
-    "stylelint" // add words to workspace
-  ]
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
