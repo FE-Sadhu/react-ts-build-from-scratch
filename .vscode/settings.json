@@ -3,7 +3,8 @@
   "eslint.validate": ["javascript", "javascriptreact", "vue", "typescript", "typescriptreact"],
   // 保存时自动修复
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
   },
   // stylelint 扩展自身的校验就够了
   "css.validate": false,
