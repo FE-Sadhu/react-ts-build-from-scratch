@@ -10,7 +10,11 @@
   "author": {
     "name": "Sadhu",
     "url": "https://github.com/YxrSadhu",
-    "email": "xxx@xxx.com"
+    "email": "sadhu.wu@gmall.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YxrSadhu/react-ts-build-from-scratch"
   },
   "license": "ISC",
   "devDependencies": {
@@ -28,7 +32,9 @@
     "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
     "stylelint-order": "^4.1.0",
     "stylelint-scss": "^3.19.0",
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.3",
+    "webpack": "^5.32.0",
+    "webpack-cli": "^4.6.0"
   },
   "config": {
     "commitizen": {
