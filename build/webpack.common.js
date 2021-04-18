@@ -24,7 +24,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Production',
+      template: path.resolve(__dirname, '../index.html'),
     }),
   ],
   optimization: {
