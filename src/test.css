@@ -1,0 +1,17 @@
+#root {
+  display: flex;
+  opacity: 0.3;
+}
+
+::placeholder {
+  color: gray;
+}
+
+.image {
+  background-image: url('');
+}
+@media (min-resolution: 2dppx) {
+  .image {
+    background-image: url('');
+  }
+}
