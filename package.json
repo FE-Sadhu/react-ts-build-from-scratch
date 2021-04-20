@@ -8,6 +8,7 @@
     "start": "webpack serve --config ./build/webpack.config.js --env development",
     "build:dev": "webpack --config ./build/webpack.config.js --env development",
     "build": "webpack --config ./build/webpack.config.js --env production",
+    "tsc:compile": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
