@@ -3,12 +3,23 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    App: path.resolve(__dirname, '../src/App.js'),
+    App: path.resolve(__dirname, '../src/index.tsx'),
   },
   output: {
     filename: '[name].[contenthash].js', // 内容改变就生成不同的哈希值。若要避开浏览器强缓存，利用该 hash 值改变文件名
     path: path.resolve(__dirname, '../dist'),
     clean: true, // 每次构建前清理 /dist 文件夹，这样只会生成用到的文件
+  },
+  resolve: {
+    // 配置 extensions，在 import 的时候就可以不加文件后缀名了。
+    // webpack 会按照定义的后缀名的顺序依次处理文件，比如上文配置 ['.tsx', '.ts', '.js', '.json'] ，webpack 会先尝试加上 .tsx 后缀，看找得到文件不，如果找不到就依次尝试进行查找，
+    // 所以我们在配置时尽量把最常用到的后缀放到最前面，可以缩短查找时间。
+    extensions: ['.tsx', '.ts', '.js', '.json'],
+    alias: {
+      Src: path.resolve(__dirname, '../src'),
+      Components: path.resolve(__dirname, '../src/components'),
+      Utils: path.resolve(__dirname, '../src/utils'),
+    },
   },
   module: {
     rules: [
