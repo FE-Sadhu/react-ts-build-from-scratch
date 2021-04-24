@@ -30,6 +30,7 @@
   "prettier.requireConfig": true,
   "cSpell.words": [
     "corejs",
+    "pmmmwh",
     "stylelint",
     "webpackbar"
   ],
