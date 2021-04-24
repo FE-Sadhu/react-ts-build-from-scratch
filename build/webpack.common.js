@@ -1,5 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackBar = require('webpackbar');
+// webpack 打包编译时，起一个单独的进程去并行地进行 TypeScript 的类型检查
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const isDev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: {
@@ -14,7 +20,7 @@ module.exports = {
     // 配置 extensions，在 import 的时候就可以不加文件后缀名了。
     // webpack 会按照定义的后缀名的顺序依次处理文件，比如上文配置 ['.tsx', '.ts', '.js', '.json'] ，webpack 会先尝试加上 .tsx 后缀，看找得到文件不，如果找不到就依次尝试进行查找，
     // 所以我们在配置时尽量把最常用到的后缀放到最前面，可以缩短查找时间。
-    extensions: ['.tsx', '.ts', '.js', '.json'],
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
     alias: {
       Src: path.resolve(__dirname, '../src'),
       Components: path.resolve(__dirname, '../src/components'),
@@ -24,15 +30,21 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(tsx?|js)$/,
+        test: /\.(j|t)sx?$/,
         loader: 'babel-loader',
-        options: { cacheDirectory: true }, // babel-loader 在执行的时候，可能会产生一些运行期间重复的公共文件，造成代码体积大冗余，同时也会减慢编译效率，所以我们开启 cacheDirectory 将这些公共文件缓存起来，下次编译就会加快很多
+        options: {
+          cacheDirectory: true, // babel-loader 在执行的时候，可能会产生一些运行期间重复的公共文件，造成代码体积大冗余，同时也会减慢编译效率，所以我们开启 cacheDirectory 将这些公共文件缓存起来，下次编译就会加快很多
+          plugins: [
+            // ... other plugins
+            isDev && require.resolve('react-refresh/babel'), // react 更强大的 HMR，替代 react-hot-loader
+          ].filter(Boolean),
+        },
         exclude: /node_modules/,
       },
       {
         test: /\.css$/i,
         use: [
-          'style-loader',
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader, // 开发环境不需要分割 css
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -60,6 +72,22 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../index.html'),
+    }),
+    new WebpackBar({
+      name: isDev ? 'Server Starting' : 'Package Building',
+      color: '#6495ED',
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        memoryLimit: isDev ? 1024 : 2048, // 开发环境限制使用的内存为 1G, 生产环境构建并不会长时间的占用内存，所以可以调大点
+        mode: 'write-references', // If you use the babel-loader, it's recommended to use write-references mode to improve initial compilation time.
+        // 检查选项
+        diagnosticOptions: {
+          // 检查语义 -> 一般类型检查、作用域检查都属于语义检查，比如一个类型 Number 的变量，从语法上讲可以赋给它任意值，从语义上讲只能赋给它 number 类型的值
+          semantic: true,
+          syntactic: true, // 检查语法
+        },
+      },
     }),
   ],
   optimization: {

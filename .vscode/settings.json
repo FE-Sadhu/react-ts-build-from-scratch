@@ -30,7 +30,8 @@
   "prettier.requireConfig": true,
   "cSpell.words": [
     "corejs",
-    "stylelint"
+    "stylelint",
+    "webpackbar"
   ],
   // 保存文件时自动用 prettier 格式化
   "editor.formatOnSave": true,
