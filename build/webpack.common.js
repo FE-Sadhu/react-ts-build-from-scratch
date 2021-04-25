@@ -45,7 +45,14 @@ module.exports = {
         test: /\.css$/i,
         use: [
           isDev ? 'style-loader' : MiniCssExtractPlugin.loader, // 开发环境不需要分割 css
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: isDev ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64]',
+              },
+            },
+          },
           {
             loader: 'postcss-loader',
             options: {
