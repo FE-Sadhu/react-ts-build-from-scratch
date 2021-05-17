@@ -14,6 +14,7 @@ module.exports = {
   output: {
     filename: '[name].[contenthash].js', // 内容改变就生成不同的哈希值。若要避开浏览器强缓存，利用该 hash 值改变文件名
     path: path.resolve(__dirname, '../dist'),
+    assetModuleFilename: 'images/[hash][ext][query]', // 定义静态资源路径以及格式
     clean: true, // 每次构建前清理 /dist 文件夹，这样只会生成用到的文件
   },
   resolve: {
